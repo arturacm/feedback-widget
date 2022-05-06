@@ -1,7 +1,7 @@
 import type { FeedbackTypes } from "..";
 import { feedbackTypes } from "..";
 import { CloseButton } from "../../CloseButton";
-import { ArrowLeft, Camera } from "phosphor-react";
+import { ArrowLeft } from "phosphor-react";
 import { ScreenshotButton } from "../ScreenshotButton";
 import { FormEvent, useState, useCallback, ChangeEvent } from "react";
 
@@ -17,20 +17,22 @@ export function FeedbackContentStep({
   onFeedbackSent,
 }: FeedbackContentStepProps) {
   const [screenshot, setScreenshot] = useState<string | null>(null);
-  const [comment, setComment] = useState<string>('');
+  const [comment, setComment] = useState<string>("");
   const typeInfo = feedbackTypes[feedbackType];
 
   const handleSubmit = useCallback((event: FormEvent) => {
     event.preventDefault();
-
-    onFeedbackSent()
     console.log({
       screenshot,
       comment,
     });
-  },[]);
+    onFeedbackSent();
+  }, [screenshot, comment]);
 
-  const handleCommentChange = useCallback((event: ChangeEvent<HTMLTextAreaElement>)=> setComment(event.target.value),[]);
+  const handleCommentChange = useCallback(
+    (event: ChangeEvent<HTMLTextAreaElement>) => setComment(event.target.value),
+    []
+  );
 
   return (
     <>
@@ -58,20 +60,20 @@ export function FeedbackContentStep({
           onChange={handleCommentChange}
         />
 
-      <footer className="flex gap-2 mt-2">
-        <ScreenshotButton
-          onScreenshotTook={setScreenshot}
-          screenshot={screenshot}
-        />
+        <footer className="flex gap-2 mt-2">
+          <ScreenshotButton
+            onScreenshotTook={setScreenshot}
+            screenshot={screenshot}
+          />
 
-        <button
-          type="submit"
-          className="p-2 bg-brand-500 rounded-md border-transparent flex-1 flex justify-center items-center text-sn hover:bg-brand-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-colors disabled:opacity-50 Odisabled:hover:bg-brand-500"
-          disabled={comment?.length ===0}
-        >
-          Send feedback
-        </button>
-      </footer>
+          <button
+            type="submit"
+            className="p-2 bg-brand-500 rounded-md border-transparent flex-1 flex justify-center items-center text-sn hover:bg-brand-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-colors disabled:opacity-50 Odisabled:hover:bg-brand-500"
+            disabled={comment?.length === 0}
+          >
+            Send feedback
+          </button>
+        </footer>
       </form>
     </>
   );
