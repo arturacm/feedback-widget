@@ -1,11 +1,13 @@
 import React, { useRef } from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { ChatTeardropDots } from "phosphor-react-native";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { gestureHandlerRootHOC } from "react-native-gesture-handler";
 import { styles } from "./styles";
 import { theme } from "../../theme";
 import { feedbackTypes } from '../../utils/feedbackTypes';
+import { Options } from "../Options";
+
 export type FeedbackType = keyof typeof feedbackTypes;
 
 function Widget() {
@@ -28,7 +30,7 @@ function Widget() {
         backgroundStyle={styles.modal}
         handleIndicatorStyle={styles.indicator}
       >
-        <Text>To be completed herer</Text>
+        <Options />
       </BottomSheet>
     </>
   );
