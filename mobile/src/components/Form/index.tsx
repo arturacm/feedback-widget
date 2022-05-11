@@ -6,6 +6,8 @@ import { theme } from "../../theme";
 
 import { FeedbackType } from "../Widget";
 import { feedbackTypes } from "../../utils/feedbackTypes";
+import { ScreenshotButton } from "../ScreenshotButton"
+import { Button } from "../Button";
 interface Props {
   feedbackType: FeedbackType;
 }
@@ -34,6 +36,13 @@ export function Form({ feedbackType }: Props) {
         placeholder="Is something not working? We would like to solve it. Please tell us in details what"
         placeholderTextColor={theme.colors.text_secondary}
       />
+      <View style={styles.footer}>
+        <ScreenshotButton
+        onTakeShot={() => {}}
+        onRemoveShot={() => {}}
+        screenshot="http://github.com/arturacm.png"/>
+      <Button isLoading={false} />
+      </View>
     </View>
   );
 }
