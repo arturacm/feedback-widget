@@ -33,9 +33,9 @@ function Widget() {
         handleIndicatorStyle={styles.indicator}
       >
 
-        {/* <Form feedbackType="BUG"/> */}
+        <Form feedbackType="BUG"/>
         {/* <Options /> */}
-        <Success/>
+        {/* <Success/> */}
       </BottomSheet>
     </>
   );

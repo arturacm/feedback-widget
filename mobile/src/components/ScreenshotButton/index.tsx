@@ -1,8 +1,10 @@
-import { Camera, Trash } from "phosphor-react-native";
 import React from "react";
+import { Camera, Trash } from "phosphor-react-native";
 import { View, TouchableOpacity, Image } from "react-native";
 import { theme } from "../../theme";
 import { styles } from "./styles";
+import { captureScreen } from 'react-native-view-shot';
+
 interface Props {
   screenshot: string | null;
   onTakeShot: () => void;
@@ -14,6 +16,7 @@ export function ScreenshotButton({
   onTakeShot,
   onRemoveShot,
 }: Props) {
+
   return (
     <TouchableOpacity
       style={styles.container}
